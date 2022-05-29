@@ -1,11 +1,16 @@
 from kubernetes import client, config
+from kubernetes.config import load_config
 import json
+#config.load_kube_config()
+
 
 class utilModels(object):
     def __init__(self):
         self.data = ""
-        #config.load_incluster_config()
-        config.load_kube_config()
+        config.load_incluster_config()
+        #config.load_kube_config()
+        #load_config()
+
         self.v1 = client.CoreV1Api()
 
     def get_running_pod_count(self, svc_name):

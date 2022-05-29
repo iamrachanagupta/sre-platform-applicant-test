@@ -21,7 +21,7 @@ def getServices():
 
 @app.route("/services/<applicationGroup>")
 def getServicesByAppGrp(applicationGroup):
-    return "Services by appl Group!"
+    return jsonify(utils_obj.get_all_services_by_appGrp(applicationGroup))
 
 
 

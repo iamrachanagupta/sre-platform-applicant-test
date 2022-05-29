@@ -48,7 +48,22 @@ class utilModels(object):
         #return json.dumps(data, indent=4)
         return data
 
+    def get_all_services_by_appGrp(self, app_grp):
+        data = []
 
+        output = self.v1.list_namespaced_service(namespace='default', label_selector="applicationGroup="+app_grp)
+        # print(self.v1.list_namespaced_pod(namespace='default'))
+        for svc in output.items:
+            service_info = dict()
+
+            service_info['name'] = svc.metadata.name
+            service_info['applicationGroup'] = svc.metadata.labels['applicationGroup']
+
+            service_info['runningPodsCount'] = self.get_running_pod_count(service_info['name'])
+            data.append(service_info)
+
+        # return json.dumps(data, indent=4)
+        return data
 
 def  main():
     obj = utilModels()

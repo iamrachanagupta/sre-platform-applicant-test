@@ -1,0 +1,43 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sre-platform-app-deployment
+  labels:
+    service: sre-platform-app
+    applicationGroup: beta
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      service: sre-platform-app
+  template:
+    metadata:
+      labels:
+        service: sre-platform-app
+    spec:
+      containers:
+      - name: sre-platform-app
+        image: sre-platform-app
+        imagePullPolicy: Never
+        ports:
+        - containerPort: 5000
+...
+
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: sre-platform-app
+spec:
+  selector:
+    app: sre-platform-app
+  ports:
+    - protocol: "TCP"
+      port: 5000
+      targetPort: 5000
+  type: ClusterIP
+...
+
+

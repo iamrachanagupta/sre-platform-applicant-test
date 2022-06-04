@@ -1,4 +1,4 @@
-# Platform Developer Test
+# SRE Platform Application
 
 The team SRE Platform has created a Kubernetes cluster and the first few services have been deployed to it. Now it is
 time to expose some information on the current state of each service.

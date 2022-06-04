@@ -21,7 +21,9 @@ exposes some information on the current state of each service. There are two API
 - Check if your app pod is in running state : kubectl get pods
 - Note the external IP from the command 'kubectl get svc' for the sre-platform-app
 - Go to browser and check for the APIs exposed such as:
+    
     http://10.2.4.12:5000/services
+    
     http://10.2.4.12:5000/services/beta
 
 

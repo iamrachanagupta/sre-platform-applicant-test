@@ -2,19 +2,16 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: sre-platform-app-deployment
-  labels:
-    service: sre-platform-app
-    applicationGroup: beta
+  name: sre-platform-app
 spec:
   replicas: 1
   selector:
     matchLabels:
-      service: sre-platform-app
+      app: sre-platform-app
   template:
     metadata:
       labels:
-        service: sre-platform-app
+        app: sre-platform-app
     spec:
       containers:
       - name: sre-platform-app
@@ -37,7 +34,90 @@ spec:
     - protocol: "TCP"
       port: 5000
       targetPort: 5000
-  type: ClusterIP
+  externalIPs:
+    - 10.2.4.12
 ...
 
+
+
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: happy-colden
+spec:
+  selector:
+    service: happy-colden
+  ports:
+    - protocol: "TCP"
+      port: 9092
+      targetPort: 9092
+...
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: stoic-sammet
+spec:
+  selector:
+    service: stoic-sammet
+    applicationGroup: alpha
+  ports:
+    - protocol: "TCP"
+      port: 9091
+      targetPort: 9091
+...
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: blissful-goodall
+  labels:
+    service: blissful-goodall
+    applicationGroup: beta
+spec:
+  selector:
+    service: blissful-goodall
+  ports:
+    - protocol: "TCP"
+      port: 9093
+      targetPort: 9093
+...
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: quirky-raman
+  labels:
+    service: quirky-raman
+    applicationGroup: gamma
+spec:
+  selector:
+    service: quirky-raman
+  ports:
+    - protocol: "TCP"
+      port: 9094
+      targetPort: 9094
+...
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: confident-cartwright
+  labels:
+    service: confident-cartwright
+    applicationGroup: beta
+spec:
+  selector:
+    service: confident-cartwright
+  ports:
+    - protocol: "TCP"
+      port: 9095
+      targetPort: 9095
+...
 

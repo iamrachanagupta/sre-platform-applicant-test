@@ -13,11 +13,16 @@ exposes some information on the current state of each service. There are two API
 ## Steps to run the application
 - Use a linux(Ubuntu 20.04.2 LTS) for development
 - Install all softwares mentioned above
+- Start the miniKube using sudo 
+- minikube start --vm-driver=none
 - Clone the repository : git clone https://github.com/iamrachanagupta/sre-platform-applicant-test.git
 - Create a docker image
 - Deploy docker image to kubernetes as a service.
 - Check if your app pod is in running state : kubectl get pods
-- Go to browser and check for the APIs exposed
+- Note the external IP from the command 'kubectl get svc' for the sre-platform-app
+- Go to browser and check for the APIs exposed such as:
+    http://10.2.4.12:5000/services
+    http://10.2.4.12:5000/services/beta
 
 
 ## Docker commands 
